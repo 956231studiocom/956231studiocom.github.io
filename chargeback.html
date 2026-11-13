@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Chargeback response: what to send by reason code</title>
+<meta name="description" content="What evidence a processor accepts for each chargeback reason code, the first-hour routine, and which records to keep before a dispute arrives.">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="canonical" href="https://956231studiocom.github.io/chargeback.html">
+<style>:root{--ink:#111827;--mut:#6b7280;--line:#e5e7eb;--acc:#0f766e;--soft:#f9fafb}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font:17px/1.75 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px 90px}
+header{border-bottom:1px solid var(--line);padding:20px 0;margin-bottom:38px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+header .brand{font-weight:800;font-size:16px;letter-spacing:-.01em}
+header nav a{color:var(--mut);text-decoration:none;font-size:14.5px;margin-left:18px}
+h1{font-size:38px;line-height:1.18;letter-spacing:-.025em;margin:0 0 14px}
+.lead{font-size:19.5px;color:var(--mut);margin:0 0 34px;line-height:1.55}
+h2{font-size:23px;margin:46px 0 14px;letter-spacing:-.014em;padding-bottom:8px;border-bottom:1px solid var(--line)}
+h3{font-size:18px;margin:30px 0 8px}
+p{margin:0 0 15px}
+ul,ol{margin:0 0 18px;padding-left:24px}
+li{margin:0 0 9px}
+code{background:var(--soft);border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:14px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+pre{background:#0f172a;color:#e2e8f0;padding:16px 18px;border-radius:10px;overflow-x:auto;font-size:13.5px;line-height:1.6}
+pre code{background:none;border:0;color:inherit;padding:0}
+blockquote{margin:0 0 18px;padding:4px 0 4px 18px;border-left:3px solid var(--line);color:var(--mut)}
+.card{border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin:20px 0;background:var(--soft)}
+.card h3{margin-top:0}
+.card p:last-child{margin-bottom:0}
+.grid{display:grid;grid-template-columns:1fr;gap:16px;margin:24px 0}
+@media(min-width:640px){.grid{grid-template-columns:1fr 1fr}}
+a{color:var(--acc)}
+.tag{display:inline-block;background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0;border-radius:999px;padding:2px 10px;font-size:12.5px;font-weight:600;margin:0 6px 6px 0}
+footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-size:14px;color:var(--mut)}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15px}
+th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+th{background:var(--soft);font-weight:700}</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="brand">Store Ops Toolkit</div>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/daily-checklist.html">Daily checklist</a>
+    <a href="/chargeback.html">Chargebacks</a>
+    <a href="/deliverability.html">Deliverability</a>
+  </nav>
+</header>
+<h1 id="chargeback-response-what-to-send-by-reason-code">Chargeback Response: What to Send by Reason Code</h1>
+
+<p>A reference for store owners who just opened a dispute notice and have a short window to answer it.</p>
+
+<p>Most chargebacks are not lost on the facts. They are lost <b>by default</b> — because the response arrived late, because it argued about store policy instead of the transaction, or because the evidence that would have won it was purged weeks earlier.</p>
+
+<p>This covers the three things that decide the outcome: <b>what evidence a processor actually accepts per reason code</b>, <b>what the first hour should look like</b>, and <b>what to keep before you need it</b>.</p>
+
+<blockquote>Not legal advice, no guarantee of outcome. Issuers and processors decide. The goal is narrower: do not lose by default.</blockquote>
+
+<p>---</p>
+
+<h2 id="the-three-ways-people-lose-without-being-wrong">The three ways people lose without being wrong</h2>
+
+<p><b>1. They argue policy.</b></p>
+<p>"I clearly state no refunds on the product page" is not evidence about the transaction. Dispute rules ask whether the cardholder authorised the charge and received what was described — not what your terms say. Policy arguments consume the word limit and prove nothing.</p>
+
+<p><b>2. They attach screenshots instead of records.</b></p>
+<p>A screenshot of a tracking page is a picture. A tracking record with the carrier's response, timestamp, destination and signature is evidence. Processors are auditable systems; they want the second kind.</p>
+
+<p><b>3. They answer late.</b></p>
+<p>The response window is counted in calendar days. Miss it and the dispute resolves against you before anyone reads the file.</p>
+
+<p>---</p>
+
+<h2 id="what-each-reason-code-actually-wants">What each reason code actually wants</h2>
+
+<h3 id="fraudulent-card-not-authorised">`fraudulent` — "card not authorised"</h3>
+
+<p>Whether the real cardholder made the purchase:</p>
+
+<ul>
+<li>AVS result and CVV result as returned by the processor — not your assumption about them</li>
+<li>IP address, device fingerprint and geolocation at the moment of order</li>
+<li>Delivery confirmation to the billing address, or to an address the customer confirmed in writing</li>
+<li>Prior order history from the same cardholder with no disputes</li>
+<li>For digital goods: download logs with timestamps, IP and account email</li>
+</ul>
+
+<p>Ignored: "the order looks normal", fraud scores with no fields attached.</p>
+
+<h3 id="product-not-received">`product_not_received`</h3>
+
+<p>A logistics question:</p>
+
+<ul>
+<li>Carrier tracking record showing delivery, with timestamp and destination postal code</li>
+<li>Proof of delivery: signature, photo, or carrier confirmation</li>
+<li>The shipping address exactly as the customer entered it</li>
+<li>Communication showing the customer acknowledged delivery</li>
+</ul>
+
+<p>Ignored: a tracking link with no snapshot of what it said at the time.</p>
+
+<h3 id="product-not-as-described-unacceptable">`product_not_as_described` / `unacceptable`</h3>
+
+<p>A description-versus-reality question:</p>
+
+<ul>
+<li>The product page as it existed at purchase time — archived, not "what it says now"</li>
+<li>Order details showing variant, size, colour, quantity shipped</li>
+<li>The customer's own messages, if they describe something different from what was shipped</li>
+<li>Your return/refund record, if a return was offered and declined</li>
+</ul>
+
+<p>Ignored: your opinion that the product was fine.</p>
+
+<h3 id="duplicate-charge">`duplicate_charge`</h3>
+
+<p>Usually technical, not judgemental:</p>
+
+<ul>
+<li>Both transaction records with distinct authorisation codes</li>
+<li>Evidence they are for different orders, or that one was voided/refunded</li>
+<li>The processor's settlement report for the period</li>
+</ul>
+
+<h3 id="subscription-canceled">`subscription_canceled`</h3>
+
+<p>Whether cancellation was available and whether it happened before the charge:</p>
+
+<ul>
+<li>The cancellation flow as the customer experienced it, with timestamps of any attempt</li>
+<li>Login and click records around the alleged cancellation</li>
+<li>Your cancellation confirmation email, or the absence of a request</li>
+<li>Billing terms shown at signup, archived</li>
+</ul>
+
+<h3 id="credit-not-processed">`credit_not_processed`</h3>
+
+<p>Whether you promised a refund and failed to issue it:</p>
+
+<ul>
+<li>Refund transaction ID and settlement date</li>
+<li>The processor's refund record</li>
+<li>If the refund was issued after the dispute: the transaction reference, so the issuer can close it</li>
+</ul>
+
+<p>---</p>
+
+<h2 id="the-first-hour">The first hour</h2>
+
+<p>Do these before writing a word of response:</p>
+
+<ol>
+<li><b>Pull the transaction record.</b> Authorisation code, AVS/CVV result, IP, device, timestamp, amount, currency.</li>
+<li><b>Export the tracking record now.</b> Carrier page, API response, or both — with today's date visible, because the carrier will purge it.</li>
+<li><b>Save the delivery confirmation</b>, and download the underlying record if the API exposes it.</li>
+<li><b>Check whether the customer contacted you first.</b> An unanswered support email before the dispute is a very different story from silence.</li>
+<li><b>Read the reason code, not the customer's message.</b> The code defines which evidence matters.</li>
+</ol>
+
+<p>Then write the response: short, factual, numbered against the code's requirements, no emotion, no legal threats.</p>
+
+<p>---</p>
+
+<h2 id="what-to-keep-before-you-need-it">What to keep, before you need it</h2>
+
+<table><tr><th>Record</th><th>Typical retention</th><th>Why it matters</th></tr><tr><th>Carrier tracking</th><th>~60 days at many carriers</th><th>Most requested evidence for "not received"</th></tr><tr><th>Product page snapshot</th><th>Keep your own, indefinitely</th><th>"As described" disputes are decided on the page **at purchase time**</th></tr><tr><th>Checkout terms shown to buyer</th><th>Keep your own</th><th>Needed for subscription and refund disputes</th></tr><tr><th>Order export</th><th>Monthly</th><th>Your only copy independent of platform uptime</th></tr><tr><th>Support correspondence</th><th>12 months minimum</th><th>Pre-dispute contact changes the narrative</th></tr></table>
+
+<p>The failure mode is consistent: the dispute arrives on day 75 and the tracking record died on day 60. Export on a schedule, not on demand.</p>
+
+<p>---</p>
+
+<h2 id="full-kit">Full kit</h2>
+
+<p>This repo is the framework. The paid kit adds what you paste into an actual response:</p>
+
+<ul>
+<li><b>Evidence pack template per reason code</b> — six sections, each listing exactly which documents a processor accepts and which get ignored</li>
+<li><b>Reply letter skeletons per code</b> — short, factual, structured so a reviewer can verify each claim against an attached record</li>
+<li><b>Retention calendar</b> — what to export and how often, so evidence exists at the moment of the dispute</li>
+</ul>
+
+<https://475563839418.gumroad.com/l/shopify-chargeback-response-kit>
+
+<p>The kit's deliverable is readable <b>before</b> you pay: <https://956231studio.com/deliverables/shopify-chargeback-response-kit.html></p>
+
+<p>Related, free: the 15-check <a href="https://github.com/956231studiocom/store-ops-daily-checklist">store ops daily checklist</a> covers the operational leaks that turn into disputes.</p>
+
+<p>---</p>
+
+<h2 id="contributing">Contributing</h2>
+
+<p>If a reason code has an evidence requirement not covered here, open an issue with the code name, processor, and which document the reviewer actually accepted. Concrete cases get added.</p>
+
+<h2 id="license">License</h2>
+
+<p>CC BY 4.0 — copy, translate, reuse with attribution.</p>
+
+<footer>
+  <p>Store Ops Toolkit — free operational references for Shopify, WooCommerce, Gumroad and Etsy sellers. Text under CC BY 4.0. No tracking, no signup, no popups.</p>
+</footer>
+</div>
+</body>
+</html>
