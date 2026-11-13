@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The 15-Check Store Ops Daily Checklist</title>
+<meta name="description" content="Fifteen daily checks for Shopify, WooCommerce and Etsy stores: unfulfilled orders, expiring disputes, DMARC alignment, empty product pages, purged tracking.">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="canonical" href="https://956231studiocom.github.io/daily-checklist.html">
+<style>:root{--ink:#111827;--mut:#6b7280;--line:#e5e7eb;--acc:#0f766e;--soft:#f9fafb}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font:17px/1.75 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px 90px}
+header{border-bottom:1px solid var(--line);padding:20px 0;margin-bottom:38px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+header .brand{font-weight:800;font-size:16px;letter-spacing:-.01em}
+header nav a{color:var(--mut);text-decoration:none;font-size:14.5px;margin-left:18px}
+h1{font-size:38px;line-height:1.18;letter-spacing:-.025em;margin:0 0 14px}
+.lead{font-size:19.5px;color:var(--mut);margin:0 0 34px;line-height:1.55}
+h2{font-size:23px;margin:46px 0 14px;letter-spacing:-.014em;padding-bottom:8px;border-bottom:1px solid var(--line)}
+h3{font-size:18px;margin:30px 0 8px}
+p{margin:0 0 15px}
+ul,ol{margin:0 0 18px;padding-left:24px}
+li{margin:0 0 9px}
+code{background:var(--soft);border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:14px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+pre{background:#0f172a;color:#e2e8f0;padding:16px 18px;border-radius:10px;overflow-x:auto;font-size:13.5px;line-height:1.6}
+pre code{background:none;border:0;color:inherit;padding:0}
+blockquote{margin:0 0 18px;padding:4px 0 4px 18px;border-left:3px solid var(--line);color:var(--mut)}
+.card{border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin:20px 0;background:var(--soft)}
+.card h3{margin-top:0}
+.card p:last-child{margin-bottom:0}
+.grid{display:grid;grid-template-columns:1fr;gap:16px;margin:24px 0}
+@media(min-width:640px){.grid{grid-template-columns:1fr 1fr}}
+a{color:var(--acc)}
+.tag{display:inline-block;background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0;border-radius:999px;padding:2px 10px;font-size:12.5px;font-weight:600;margin:0 6px 6px 0}
+footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-size:14px;color:var(--mut)}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15px}
+th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+th{background:var(--soft);font-weight:700}</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="brand">Store Ops Toolkit</div>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/daily-checklist.html">Daily checklist</a>
+    <a href="/chargeback.html">Chargebacks</a>
+    <a href="/deliverability.html">Deliverability</a>
+  </nav>
+</header>
+<h1 id="the-15-check-store-ops-daily-checklist">The 15-Check Store Ops Daily Checklist</h1>
+
+<p>Fifteen checks for Shopify, WooCommerce, Gumroad and Etsy stores. Each one catches a leak that never triggers an alarm — the kind you only discover when a customer complains or a payout is short.</p>
+
+<p>Run this <b>before</b> you open analytics. Traffic to a broken store just buys more complaints.</p>
+
+<blockquote>If more than three boxes are unchecked, stop marketing and fix operations first.</blockquote>
+
+<p>---</p>
+
+<h2 id="why-a-checklist-and-not-a-dashboard">Why a checklist and not a dashboard</h2>
+
+<p>Dashboards show you what you already decided to measure. These fifteen checks are the failures that happen *outside* your metrics:</p>
+
+<ul>
+<li>An order paid but not fulfilled shows up as revenue, not as a problem.</li>
+<li>A chargeback with 48 hours left shows up as nothing at all — until it is lost by default.</li>
+<li>A product page with zero images still counts as "published" in every admin panel.</li>
+</ul>
+
+<p>None of these produce an error, a red badge, or an email. They produce silence, and silence is expensive.</p>
+
+<p>---</p>
+
+<h2 id="the-15-checks">The 15 checks</h2>
+
+<h3 id="money-in-transit">Money in transit</h3>
+
+<p><b>1. Orders paid but not fulfilled in 24h — ship or refund today.</b></p>
+<p>Paid-and-unfulfilled is the single fastest route to a chargeback. A chargeback costs the sale, the fee, and a strike against your processing account.</p>
+
+<p><b>2. Any chargeback or dispute with under 48h left on the response window — answer it before analytics.</b></p>
+<p>Response windows are counted in calendar days, not business days. Missing one loses the dispute by default, regardless of your evidence.</p>
+
+<p><b>3. Payout scheduled but held — read the reason code, not the amount.</b></p>
+<p>A hold is a signal about your account, not about that one payout. The reason code tells you which document or policy triggered it.</p>
+
+<h3 id="deliverability">Deliverability</h3>
+
+<p><b>4. Email bounce rate above 3% in 7 days — stop sending, authenticate first.</b></p>
+<p>Sending through a high bounce rate trains filters to distrust your domain. The damage outlasts the campaign.</p>
+
+<p><b>5. SPF, DKIM and DMARC passing on a real raw header — not on a tool summary.</b></p>
+<p>Tool summaries check the record, not the delivery. Open one real message, read the <code>Authentication-Results</code> header, and confirm all three pass *aligned* with your From domain.</p>
+
+<p><b>6. Any product page with zero images — it is invisible in search, not merely ugly.</b></p>
+<p>Image-free pages lose both conversion and image-search entry points.</p>
+
+<p><b>7. Any product with an empty description — a blank box loses the buyer in about three seconds.</b></p>
+<p>A price with no explanation is not a product page, it is a question mark.</p>
+
+<p><b>8. Checkout tested with a real card in the last 7 days — test mode proves nothing.</b></p>
+<p>Test mode bypasses the payment processor, the fraud rules, the tax engine and the 3-D Secure step. It proves the button exists, nothing more.</p>
+
+<h3 id="policy-and-support">Policy and support</h3>
+
+<p><b>9. Refund policy reachable one click from the product page.</b></p>
+<p>Buried policies read as evasion. One click, visible, in the buyer's language.</p>
+
+<p><b>10. Support mailbox answered within 24h — unanswered mail turns into chargebacks.</b></p>
+<p>A buyer who cannot reach you disputes instead of asking again.</p>
+
+<p><b>11. Carrier tracking records older than 30 days still archived.</b></p>
+<p>Carriers typically purge tracking at 60 days. After that you have no evidence for a late-delivery dispute, even though the dispute can arrive much later.</p>
+
+<h3 id="housekeeping">Housekeeping</h3>
+
+<p><b>12. Order export backed up this month.</b></p>
+<p>Platform outages and account reviews both happen. The export is your only copy that does not depend on someone else's uptime.</p>
+
+<p><b>13. Any discount code still live that should have expired.</b></p>
+<p>Expired-but-live codes leak margin quietly, and affiliate communities find them fast.</p>
+
+<p><b>14. Tax or VAT settings changed by a platform without telling you.</b></p>
+<p>Marketplaces and processors do update tax behaviour. Price checks and invoices will not always flag it.</p>
+
+<p><b>15. The one thing you would fix today if you could only fix one.</b></p>
+<p>Write it down, then fix that one before doing anything else on this list. A checklist you reorder every day is not a system.</p>
+
+<p>---</p>
+
+<h2 id="how-to-actually-run-it">How to actually run it</h2>
+
+<ol>
+<li>Copy this list into a note you open daily, or fork this repo and keep your own answers in a <code>STATE.md</code>.</li>
+<li>Answer each line with <b>pass</b>, <b>fail</b>, or <b>unknown</b>. "Unknown" counts as fail — an unverified control is not a control.</li>
+<li>Fix fails in order: money in transit → deliverability → policy → housekeeping.</li>
+<li>Log the date you checked each item. A check without a date is a memory, not evidence.</li>
+</ol>
+
+<h3 id="minimal-daily-version-5-minutes">Minimal daily version (5 minutes)</h3>
+
+<p>If you only have five minutes, do lines 1, 2, 4, 8, and 15. Those five cover most of the money that disappears without a notification.</p>
+
+<p>---</p>
+
+<h2 id="automating-three-of-them">Automating three of them</h2>
+
+<p>Checks 2, 5 and 11 are the ones people ask to automate — chargeback replies, email authentication diagnosis, and tracking-record retention. The automated versions are paid kits from the same author:</p>
+
+<ul>
+<li><b>Chargeback Response Kit</b> — evidence pack and reply letters by reason code</li>
+</ul>
+<p>  <https://475563839418.gumroad.com/l/shopify-chargeback-response-kit></p>
+<ul>
+<li><b>Deliverability Rescue Kit</b> — SPF/DKIM/DMARC diagnosis and warm-up plan</li>
+</ul>
+<p>  <https://475563839418.gumroad.com/l/deliverability-rescue-kit></p>
+<ul>
+<li><b>Launch Readiness Checker</b> — 60-item pre-launch gate</li>
+</ul>
+<p>  <https://475563839418.gumroad.com/l/launch-readiness-checker></p>
+
+<p>This checklist itself is free, and stays free. There is a downloadable copy (PDF plus a printable one-pager) here:</p>
+
+<https://475563839418.gumroad.com/l/store-ops-daily-checklist>
+
+<p>---</p>
+
+<h2 id="contributing">Contributing</h2>
+
+<p>If a check on this list has saved you money, or if there is a leak it misses, open an issue with the store type and what happened. Checks that are specific, verifiable in under five minutes, and silent when skipped get added.</p>
+
+<h2 id="license">License</h2>
+
+<p>Text released under CC BY 4.0 — copy it, translate it, put it in your own ops doc. Attribution appreciated, not required.</p>
+
+<footer>
+  <p>Store Ops Toolkit — free operational references for Shopify, WooCommerce, Gumroad and Etsy sellers. Text under CC BY 4.0. No tracking, no signup, no popups.</p>
+</footer>
+</div>
+</body>
+</html>
