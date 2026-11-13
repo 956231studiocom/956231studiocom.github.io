@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Store Ops Toolkit — daily checklist, chargeback map, deliverability diagnosis</title>
+<meta name="description" content="Free operational references for Shopify, WooCommerce, Gumroad and Etsy sellers: 15 daily checks, chargeback evidence by reason code, and email deliverability diagnosis.">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="canonical" href="https://956231studiocom.github.io/">
+<style>:root{--ink:#111827;--mut:#6b7280;--line:#e5e7eb;--acc:#0f766e;--soft:#f9fafb}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font:17px/1.75 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px 90px}
+header{border-bottom:1px solid var(--line);padding:20px 0;margin-bottom:38px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+header .brand{font-weight:800;font-size:16px;letter-spacing:-.01em}
+header nav a{color:var(--mut);text-decoration:none;font-size:14.5px;margin-left:18px}
+h1{font-size:38px;line-height:1.18;letter-spacing:-.025em;margin:0 0 14px}
+.lead{font-size:19.5px;color:var(--mut);margin:0 0 34px;line-height:1.55}
+h2{font-size:23px;margin:46px 0 14px;letter-spacing:-.014em;padding-bottom:8px;border-bottom:1px solid var(--line)}
+h3{font-size:18px;margin:30px 0 8px}
+p{margin:0 0 15px}
+ul,ol{margin:0 0 18px;padding-left:24px}
+li{margin:0 0 9px}
+code{background:var(--soft);border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:14px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+pre{background:#0f172a;color:#e2e8f0;padding:16px 18px;border-radius:10px;overflow-x:auto;font-size:13.5px;line-height:1.6}
+pre code{background:none;border:0;color:inherit;padding:0}
+blockquote{margin:0 0 18px;padding:4px 0 4px 18px;border-left:3px solid var(--line);color:var(--mut)}
+.card{border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin:20px 0;background:var(--soft)}
+.card h3{margin-top:0}
+.card p:last-child{margin-bottom:0}
+.grid{display:grid;grid-template-columns:1fr;gap:16px;margin:24px 0}
+@media(min-width:640px){.grid{grid-template-columns:1fr 1fr}}
+a{color:var(--acc)}
+.tag{display:inline-block;background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0;border-radius:999px;padding:2px 10px;font-size:12.5px;font-weight:600;margin:0 6px 6px 0}
+footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-size:14px;color:var(--mut)}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15px}
+th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+th{background:var(--soft);font-weight:700}</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="brand">Store Ops Toolkit</div>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/daily-checklist.html">Daily checklist</a>
+    <a href="/chargeback.html">Chargebacks</a>
+    <a href="/deliverability.html">Deliverability</a>
+  </nav>
+</header>
+
+<h1>Silent losses in a store, and how to catch them</h1>
+<p class="lead">Three references for people running a storefront: a daily checklist, a chargeback response map, and an email deliverability diagnosis. No signup, no tool to install, everything readable in the browser.</p>
+
+<div class="grid">
+  <div class="card">
+    <h3><a href="/daily-checklist.html">The 15-check daily checklist</a></h3>
+    <p>Fifteen checks that catch the leaks which never trigger an alert — unfulfilled paid orders, disputes about to expire, broken authentication, empty product pages.</p>
+  </div>
+  <div class="card">
+    <h3><a href="/chargeback.html">Chargeback response by reason code</a></h3>
+    <p>What evidence a processor actually accepts for each reason code, and what to do in the first hour after a dispute notice arrives.</p>
+  </div>
+  <div class="card">
+    <h3><a href="/deliverability.html">Why your open rate halved</a></h3>
+    <p>Authentication alignment, volume spikes, list hygiene — the three real causes, and the order in which to check them.</p>
+  </div>
+  <div class="card">
+    <h3><a href="https://github.com/956231studiocom/store-ops-daily-checklist">Source on GitHub</a></h3>
+    <p>Every reference here is also a repository, so you can fork it, translate it, or open an issue when something is missing.</p>
+  </div>
+</div>
+
+<h2>Why this exists</h2>
+<p>Most store documentation assumes you already know what to measure. It does not help with the failures that produce no metric at all: an order that was paid and never shipped still counts as revenue, a chargeback with two days left on the clock produces no notification, and a product page with no images is technically "published".</p>
+<p>These three references are the checks that catch those. They are short because they are meant to be run, not read once.</p>
+
+<h2>Where to start</h2>
+<ol>
+<li>Open the <a href="/daily-checklist.html">daily checklist</a> and answer each line pass, fail or unknown. Unknown counts as fail.</li>
+<li>If a dispute is already open, go straight to the <a href="/chargeback.html">reason code map</a> — the clock matters more than the checklist.</li>
+<li>If email stopped landing, the <a href="/deliverability.html">deliverability diagnosis</a> names the three causes and rules them out in order.</li>
+</ol>
+
+<blockquote>If more than three boxes are unchecked, stop marketing and fix operations first. Traffic to a broken store only buys more complaints.</blockquote>
+
+<footer>
+  <p>Store Ops Toolkit — free operational references for Shopify, WooCommerce, Gumroad and Etsy sellers. Text under CC BY 4.0. No tracking, no signup, no popups.</p>
+</footer>
+</div>
+</body>
+</html>
